@@ -1,12 +1,22 @@
+import urllib2
 import os
 import json
 
+#指定网址文件下载到本地
+url = 'http://quote.gf.com.cn/kline/daily/sz/000776/20'
+f = urllib2.urlopen(url) 
+data = f.read()
+filepath = 'F:\\TDDOWNLOAD\\20'
+with open(filepath,'w') as code:
+    code.write(data)
+
 #读取指定目录下的文件
-filePath=r'F:\TDDOWNLOAD\20'
+filePath=r'F:\TDDOWNLOAD/20'
 if os.path.exists(filePath):
     print 'The file of this path exists.'
     size = os.path.getsize(filePath)
     if size != 0:
+        print 'The file is not empty.'
         file_object = open(filePath)
         try:
             all_the_text = file_object.read()
